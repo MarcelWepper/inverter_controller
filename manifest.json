@@ -1,0 +1,12 @@
+{
+  "domain": "inverter_controller",
+  "name": "Inverter Controller",
+  "codeowners": [
+    "@marcelwepper"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/marcelwepper/inverter_controller",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/marcelwepper/inverter_controller/issues",
+  "version": "0.1.0"
+}
