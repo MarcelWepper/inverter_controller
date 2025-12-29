@@ -1,25 +1,19 @@
-"""
-Custom integration to integrate inverter_controller with Home Assistant.
-"""
-from __future__ import annotations
-
-from homeassistant.core import HomeAssistant
-from homeassistant.config_entries import ConfigEntry
-
+"""Initialization of the integration."""
+from homeassistant.const import Platform
 from .const import DOMAIN
 from .coordinator import InverterCoordinator
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up this integration using UI."""
-    # Initialize your reactive coordinator
+PLATFORMS = [Platform.SENSOR, Platform.BINARY_SENSOR, Platform.SWITCH]
+
+async def async_setup_entry(hass, entry):
     coordinator = InverterCoordinator(hass, entry)
-    
-    # Store the coordinator instance
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator
-
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    entry.async_on_unload(entry.add_update_listener(async_reload_entry))
     return True
 
-async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Handle removal of an entry."""
-    hass.data[DOMAIN].pop(entry.entry_id)
-    return True
+async def async_reload_entry(hass, entry):
+    await hass.config_entries.async_reload(entry.entry_id)
+
+async def async_unload_entry(hass, entry):
+    return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
