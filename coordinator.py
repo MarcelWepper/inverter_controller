@@ -1,17 +1,20 @@
+"""Reactive brain for Inverter Controller."""
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.event import async_track_state_change_event
 from .const import DOMAIN, LOGGER
 
 class InverterCoordinator(DataUpdateCoordinator):
+    """Processes grid/solar data and stores current state for dashboard sensors."""
     def __init__(self, hass, entry):
         super().__init__(hass, LOGGER, name=DOMAIN)
-        self.config_entry = entry # Entry is still passed to coordinator constructor
+        self.config_entry = entry
         self.solar_ema, self.hard_boost, self.enabled = 0.0, False, True
         self.data = {"target_power": 100, "solar_ema": 0.0, "hard_boost": False, "guard_active": False}
         
         async_track_state_change_event(hass, [self.get_cfg("grid_sensor"), self.get_cfg("soc_sensor"), self.get_cfg("solar_sensor")], self._async_handle_update)
 
     def get_cfg(self, key, default=None):
+        """Helper to prioritize edited options over initial data."""
         return self.config_entry.options.get(key, self.config_entry.data.get(key, default))
 
     async def _async_handle_update(self, event):
