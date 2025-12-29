@@ -3,24 +3,40 @@
         "step": {
             "user": {
                 "title": "Inverter Controller Settings",
-                "description": "Select the entities from your Home Assistant that the controller will use to calculate the power balance.",
+                "description": "Select the entities and set limits for your inverter logic.",
                 "data": {
                     "grid_sensor": "Grid Power Sensor",
                     "soc_sensor": "Battery SoC Sensor",
                     "solar_sensor": "Solar Production Sensor",
                     "inverter_limit_entity": "Inverter Limit Control",
-                    "min_power": "Minimum Power Limit (W)",
-                    "max_power": "Maximum Power Limit (W)",
-                    "step_size": "Adjustment Step Size (W)"
+                    "min_power": "Min Power (W)",
+                    "max_power": "Max Power (W)",
+                    "step_size": "Step Size (W)"
                 },
                 "data_description": {
-                    "grid_sensor": "The sensor measuring your home's net power (Positive for import, Negative for export).",
-                    "soc_sensor": "The sensor reporting your battery state of charge in percentage (0-100%).",
-                    "solar_sensor": "The sensor measuring raw solar/PV power production.",
-                    "inverter_limit_entity": "The Number or Slider entity used to physically set the inverter's output limit.",
-                    "min_power": "The absolute lowest power the controller will set (usually 100W).",
-                    "max_power": "The absolute highest power allowed (usually 800W).",
-                    "step_size": "The amount of Watts to add or subtract in each adjustment cycle."
+                    "grid_sensor": "Sensor measuring net house power (Positive=Import, Negative=Export).",
+                    "soc_sensor": "Sensor reporting battery state of charge (0-100%).",
+                    "solar_sensor": "Sensor measuring raw solar production.",
+                    "inverter_limit_entity": "The Number/Slider entity that sets the inverter limit.",
+                    "min_power": "Lowest power the controller will set (usually 100W).",
+                    "max_power": "Highest power allowed (usually 800W).",
+                    "step_size": "Watts to add/subtract in each adjustment cycle."
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "title": "Edit Inverter Settings",
+                "data": {
+                    "grid_sensor": "Grid Power Sensor",
+                    "soc_sensor": "Battery SoC Sensor",
+                    "solar_sensor": "Solar Production Sensor",
+                    "inverter_limit_entity": "Inverter Limit Control",
+                    "min_power": "Min Power (W)",
+                    "max_power": "Max Power (W)",
+                    "step_size": "Step Size (W)"
                 }
             }
         }
