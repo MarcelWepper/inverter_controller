@@ -1,0 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Home Assistant local storage and logs
+config/
+*.log
+.storage/
+
+# OS-specific files
+.DS_Store
+Thumbs.db

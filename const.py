@@ -1,8 +1,9 @@
-"""Constants for inverter_controller."""
-
-from logging import Logger, getLogger
-
-LOGGER: Logger = getLogger(__package__)
+"""Constants for the Inverter Controller integration."""
+import logging
 
 DOMAIN = "inverter_controller"
-ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
+LOGGER = logging.getLogger(__package__)
+
+DEFAULT_MIN_POWER = 100
+DEFAULT_MAX_POWER = 800
+DEFAULT_STEP_SIZE = 50
