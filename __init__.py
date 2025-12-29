@@ -1,4 +1,3 @@
-"""Initialization of the integration."""
 from homeassistant.const import Platform
 from .const import DOMAIN
 from .coordinator import InverterCoordinator
@@ -9,6 +8,7 @@ async def async_setup_entry(hass, entry):
     coordinator = InverterCoordinator(hass, entry)
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = coordinator
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+    # Necessary to handle Options Flow updates
     entry.async_on_unload(entry.add_update_listener(async_reload_entry))
     return True
 
