@@ -1,44 +1,43 @@
 {
-    "config": {
-        "step": {
-            "user": {
-                "title": "Inverter Controller Settings",
-                "description": "Select the entities and set limits for your inverter logic.",
-                "data": {
-                    "grid_sensor": "Grid Power Sensor",
-                    "soc_sensor": "Battery SoC Sensor",
-                    "solar_sensor": "Solar Production Sensor",
-                    "inverter_limit_entity": "Inverter Limit Control",
-                    "min_power": "Min Power (W)",
-                    "max_power": "Max Power (W)",
-                    "step_size": "Step Size (W)"
-                },
-                "data_description": {
-                    "grid_sensor": "Sensor measuring net house power (Positive=Import, Negative=Export).",
-                    "soc_sensor": "Sensor reporting battery state of charge (0-100%).",
-                    "solar_sensor": "Sensor measuring raw solar production.",
-                    "inverter_limit_entity": "The Number/Slider entity that sets the inverter limit.",
-                    "min_power": "Lowest power the controller will set (usually 100W).",
-                    "max_power": "Highest power allowed (usually 800W).",
-                    "step_size": "Watts to add/subtract in each adjustment cycle."
-                }
-            }
+  "config": {
+    "step": {
+      "user": {
+        "title": "Required Entities",
+        "description": "Select the sensors needed for the logic.",
+        "data": {
+          "grid_sensor": "Grid Power Sensor",
+          "soc_sensor": "Battery SoC Sensor",
+          "solar_sensor": "Solar Production Sensor",
+          "inverter_limit_entity": "Inverter Limit Control"
         }
-    },
-    "options": {
-        "step": {
-            "init": {
-                "title": "Edit Inverter Settings",
-                "data": {
-                    "grid_sensor": "Grid Power Sensor",
-                    "soc_sensor": "Battery SoC Sensor",
-                    "solar_sensor": "Solar Production Sensor",
-                    "inverter_limit_entity": "Inverter Limit Control",
-                    "min_power": "Min Power (W)",
-                    "max_power": "Max Power (W)",
-                    "step_size": "Step Size (W)"
-                }
-            }
+      },
+      "settings": {
+        "title": "Logic Variables",
+        "description": "Fine-tune the balancing behavior.",
+        "data": {
+          "min_power": "Min Power (W)",
+          "max_power": "Max Power (W)",
+          "step_size": "Step Size (W)",
+          "solar_ema_alpha": "EMA Alpha (0.1 slow - 0.9 fast)"
         }
+      }
     }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Edit Inverter Settings",
+        "data": {
+          "grid_sensor": "Grid Power Sensor",
+          "soc_sensor": "Battery SoC Sensor",
+          "solar_sensor": "Solar Production Sensor",
+          "inverter_limit_entity": "Inverter Limit Control",
+          "min_power": "Min Power (W)",
+          "max_power": "Max Power (W)",
+          "step_size": "Step Size (W)",
+          "solar_ema_alpha": "EMA Alpha"
+        }
+      }
+    }
+  }
 }
