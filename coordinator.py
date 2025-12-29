@@ -25,7 +25,7 @@ class InverterCoordinator(DataUpdateCoordinator):
         }
 
         # Fixed cleanup registration
-        self.config_entry.async_on_remove(
+        self.config_entry.async_on_unload(
             async_track_state_change_event(
                 hass, 
                 [self.get_cfg("grid_sensor"), self.get_cfg("soc_sensor"), self.get_cfg("solar_sensor")], 
